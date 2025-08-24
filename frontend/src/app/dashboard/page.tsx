@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { useUser } from "@/app/auth/userContext";
 import ProtectedRoute from "./ProtectedRoute";
@@ -89,7 +90,7 @@ export default function DashboardPage() {
                 {tour.views} views
               </div>
               <div className="flex gap-2 mt-4">
-                <a href={`/dashboard/tour/${tour.id}`} className="inline-block px-4 py-2 rounded bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition">View/Edit</a>
+                <Link href={`/dashboard/tour/${tour.id}`} className="inline-block px-4 py-2 rounded bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition">View/Edit</Link>
                 <button
                   onClick={async () => {
                     if (!window.confirm('Are you sure you want to delete this tour?')) return;
@@ -119,7 +120,7 @@ export default function DashboardPage() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <a href="/dashboard/tour/new" className="inline-block px-6 py-3 rounded-full bg-purple-600 text-white font-semibold shadow-lg hover:bg-purple-700 transition">+ Create New Tour</a>
+          <Link href="/dashboard/tour/new" className="inline-block px-6 py-3 rounded-full bg-purple-600 text-white font-semibold shadow-lg hover:bg-purple-700 transition">+ Create New Tour</Link>
         </div>
       </div>
     </ProtectedRoute>
