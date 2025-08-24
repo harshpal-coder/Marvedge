@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import { useUser } from "@/app/auth/userContext";
 import ScreenRecorder from "@/components/ScreenRecorder";
 
@@ -14,7 +15,7 @@ export default function NewTourPage() {
   const [steps, setSteps] = useState<Step[]>([]);
   const [stepDesc, setStepDesc] = useState("");
   const [image, setImage] = useState<string | undefined>(undefined);
-  const { user, token } = useUser();
+  const { token } = useUser();
 
   const addStep = () => {
     if (!stepDesc) return;
@@ -62,7 +63,7 @@ export default function NewTourPage() {
         const data = await res.json();
         alert(data.error || 'Failed to create tour');
       }
-    } catch (err) {
+    } catch {
       alert('Network error');
     }
   };
@@ -102,7 +103,7 @@ export default function NewTourPage() {
             {steps.map((step: Step, idx: number) => (
               <li key={step.id} className="flex items-center gap-4 bg-gray-50 dark:bg-[#23232a] p-3 rounded">
                 <span className="font-bold text-blue-600">{idx + 1}.</span>
-                {step.image && <img src={step.image} alt="step" className="w-12 h-12 object-cover rounded" />}
+                {step.image && <Image src={step.image} alt="step" width={48} height={48} className="w-12 h-12 object-cover rounded" />}
                 <span className="flex-1">{step.description}</span>
                 <button type="button" onClick={() => removeStep(step.id)} className="text-red-500 hover:underline">Remove</button>
               </li>

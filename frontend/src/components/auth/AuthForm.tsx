@@ -87,7 +87,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
       <div className="text-center text-sm text-gray-500 mt-2">
         {mode === "login" ? (
           <>
-            Don't have an account? <a href="/auth/signup" className="text-blue-600 hover:underline">Sign Up</a>
+            Don&apos;t have an account? <a href="/auth/signup" className="text-blue-600 hover:underline">Sign Up</a>
           </>
         ) : (
           <>

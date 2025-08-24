@@ -16,24 +16,7 @@ interface Tour {
   views: number;
 }
 
-const mockTours: Tour[] = [
-  {
-    id: "1",
-    title: "Demo: Onboarding Flow",
-    steps: 5,
-    visibility: "public",
-    createdAt: "2025-08-20",
-    views: 123,
-  },
-  {
-    id: "2",
-    title: "Feature Walkthrough",
-    steps: 3,
-    visibility: "private",
-    createdAt: "2025-08-22",
-    views: 45,
-  },
-];
+
 
 
 export default function DashboardPage() {
