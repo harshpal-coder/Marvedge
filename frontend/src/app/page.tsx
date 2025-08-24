@@ -28,7 +28,7 @@ function TestimonialCard({ name, role, text }: { name: string; role: string; tex
       <div className="mb-3">
         <svg width="36" height="36" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#6366F1" opacity="0.1"/><path d="M8 12h8M12 8v8" stroke="#6366F1" strokeWidth="2" strokeLinecap="round"/></svg>
       </div>
-      <p className="italic text-gray-700 dark:text-gray-300 mb-2">"{text}"</p>
+  <p className="italic text-gray-700 dark:text-gray-300 mb-2">&quot;{text}&quot;</p>
       <div className="text-sm text-gray-500">- {name}, {role}</div>
     </div>
   );
