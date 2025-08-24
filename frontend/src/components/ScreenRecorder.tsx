@@ -8,7 +8,7 @@ export default function ScreenRecorder() {
   const chunks = useRef<BlobPart[]>([]);
 
   const startRecording = async () => {
-    const stream = await (navigator.mediaDevices as any).getDisplayMedia({ video: true });
+  const stream = await (navigator.mediaDevices as unknown as { getDisplayMedia: (constraints: MediaStreamConstraints) => Promise<MediaStream> }).getDisplayMedia({ video: true });
     mediaRecorder.current = new MediaRecorder(stream);
     chunks.current = [];
     mediaRecorder.current.ondataavailable = e => chunks.current.push(e.data);

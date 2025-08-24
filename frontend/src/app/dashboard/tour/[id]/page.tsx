@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { useUser } from "@/app/auth/userContext";
 
 interface Step {
@@ -22,8 +23,8 @@ export default function EditTourPage() {
   useEffect(() => {
     fetch(`http://localhost:4000/api/tours/${id}`)
       .then(res => res.json())
-      .then(data => {
-        setTitle(data.title);
+      .then((data: any) => {
+        setTitle(data.title || "");
         setSteps(data.steps || []);
       });
   }, [id]);
@@ -69,7 +70,7 @@ export default function EditTourPage() {
         const data = await res.json();
         alert(data.error || "Failed to update tour");
       }
-    } catch (err) {
+    } catch {
       alert("Network error");
     }
   };
@@ -105,7 +106,9 @@ export default function EditTourPage() {
             {steps.map((step: Step, idx: number) => (
               <li key={step.id} className="flex items-center gap-4 bg-gray-50 dark:bg-[#23232a] p-3 rounded">
                 <span className="font-bold text-blue-600">{idx + 1}.</span>
-                {step.image && <img src={step.image} alt="step" className="w-12 h-12 object-cover rounded" />}
+                {step.image && (
+                  <Image src={step.image} alt={step.description || "step image"} width={48} height={48} className="w-12 h-12 object-cover rounded" />
+                )}
                 <span className="flex-1">{step.description}</span>
                 <button type="button" onClick={() => removeStep(step.id)} className="text-red-500 hover:underline">Remove</button>
               </li>
