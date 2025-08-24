@@ -51,7 +51,7 @@ function FAQ({ q, a }: { q: string; a: string }) {
   return (
     <div>
       <div className="font-semibold text-foreground mb-1">Q: {q}</div>
-              <div className="text-gray-600 dark:text-gray-400 mb-2">A: {a.replace(/"/g, "&quot;")}</div>
+            <div className="text-gray-600 dark:text-gray-400 mb-2">A: {a.replace(/"/g, "&quot;").replace(/'/g, "&apos;")}</div>
     </div>
   );
 }

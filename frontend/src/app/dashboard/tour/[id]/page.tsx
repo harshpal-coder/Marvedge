@@ -23,7 +23,7 @@ export default function EditTourPage() {
   useEffect(() => {
     fetch(`http://localhost:4000/api/tours/${id}`)
       .then(res => res.json())
-      .then((data: any) => {
+  .then((data: { title?: string; steps?: Step[] }) => {
         setTitle(data.title || "");
         setSteps(data.steps || []);
       });
