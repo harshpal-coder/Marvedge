@@ -20,7 +20,11 @@ export default function AuthForm({ mode }: AuthFormProps) {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`http://localhost:4000/api/auth/${mode}`, {
+      let authUrl = `https://marvedge-backend.onrender.com/api/auth/${mode}`;
+      if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+        authUrl = `http://localhost:4000/api/auth/${mode}`;
+      }
+      const res = await fetch(authUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
