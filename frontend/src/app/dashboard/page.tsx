@@ -83,7 +83,11 @@ export default function DashboardPage() {
                   onClick={async () => {
                     if (!window.confirm('Are you sure you want to delete this tour?')) return;
                     try {
-                      const res = await fetch(`http://localhost:4000/api/tours/${tour.id}`, {
+                      let deleteUrl = `https://marvedge-backend.onrender.com/api/tours/${tour.id}`;
+                      if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+                        deleteUrl = `http://localhost:4000/api/tours/${tour.id}`;
+                      }
+                      const res = await fetch(deleteUrl, {
                         method: 'DELETE',
                         headers: {
                           ...(token ? { Authorization: `Bearer ${token}` } : {}),
