@@ -41,7 +41,11 @@ export default function NewTourPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:4000/api/tours', {
+      let toursUrl = 'https://marvedge-backend.onrender.com/api/tours';
+      if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+        toursUrl = 'http://localhost:4000/api/tours';
+      }
+      const res = await fetch(toursUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
