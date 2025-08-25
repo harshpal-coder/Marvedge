@@ -25,14 +25,17 @@ export default function DashboardPage() {
 
 
   useEffect(() => {
-  fetch('https://marvedge-backend.onrender.com/api/tours', {
+    // Use deployed backend in production, localhost in development
+    const backendUrl = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+      ? 'http://localhost:4000/api/tours'
+      : 'https://marvedge-backend.onrender.com/api/tours';
+    fetch(backendUrl, {
       headers: {
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     })
       .then(res => res.json())
       .then(data => {
-        // Map _id to id for React key
         if (Array.isArray(data)) {
           setTours(data.map((tour) => ({
             ...tour,
