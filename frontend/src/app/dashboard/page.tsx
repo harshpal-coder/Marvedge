@@ -26,9 +26,11 @@ export default function DashboardPage() {
 
   useEffect(() => {
     // Use deployed backend in production, localhost in development
-    const backendUrl = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-      ? 'http://localhost:4000/api/tours'
-      : 'https://marvedge-backend.onrender.com/api/tours';
+    // Always use deployed backend in production, localhost only for local dev
+    let backendUrl = 'https://marvedge-backend.onrender.com/api/tours';
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+      backendUrl = 'http://localhost:4000/api/tours';
+    }
     fetch(backendUrl, {
       headers: {
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
